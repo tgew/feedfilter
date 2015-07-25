@@ -9,16 +9,36 @@
 	display: none;
 }
 
-.left {
-	float: left;
-}
-
 .authentication {
     display: none;
 }
 
 header {
-    display: block;
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    align-content: flex-end;
+    border: solid green 1px;
+    border-radius: 3px;
+    padding: 1em;
+    font-family: 'Yesteryear', cursive;
+}
+
+#following {
+    flex-grow: 1;
+    text-align: left;
+}
+
+#header-title {
+    flex-grow: 2;
+    text-align: center;
+    font-size: 1.5em;
+    color:dodgerblue
+}
+
+#filter {
+    flex-grow: 1;
+    text-align: right;
 }
 
 .inspiration {
