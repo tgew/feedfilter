@@ -1,0 +1,37 @@
+.container {
+    margin: 3em auto;
+    width: 640px;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.hidden {
+	display: none;
+}
+
+.left {
+	float: left;
+}
+
+.authentication {
+    display: none;
+}
+
+header {
+    display: block;
+}
+
+.inspiration {
+	margin-left: 3em;
+}
+
+.result {
+	border: 1px solid black;
+	padding: 5px;
+	margin: 0 auto 1em auto;
+}
+
+.error {
+	background-color: #F78181;
+	padding: 1em;
+}
