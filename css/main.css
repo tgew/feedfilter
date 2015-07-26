@@ -14,7 +14,7 @@ body {
 	display: none;
 }
 
-.authentication {
+#authentication {
 	padding: 1.6em;
 	margin: 2.5em auto;
     background-color: white;
@@ -23,15 +23,24 @@ body {
     text-align: justify
 }
 
-.authentication h1 {
+#authentication h1 {
     font-family: 'Righteous', cursive;
     text-align: center;
 }
 
-.authentication .fa {
+#authentication .fa {
     width: 100%;
     text-align: center;
     color:darkblue
+}
+
+#filter-card {
+	padding: 1.6em;
+	margin: 2.5em auto;
+    background-color: white;
+    border-radius: 5px;
+    border: solid lightgray 1px;
+    text-align: justify
 }
 
 header {
@@ -101,6 +110,16 @@ header {
     background-color: white;
     border-radius: 5px;
     border: solid lightgray 1px;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0.8em;
+}
+
+li {
+    padding: .5em 0;
+    text-decoration: none;
 }
 
 .error {

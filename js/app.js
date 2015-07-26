@@ -1,6 +1,5 @@
 // sample_data.js defines var called igDataReal that is a sample object returned by Instagram
 
-
 var displayItem = function(item) {
     var result = $('.templates .image-container').clone();
 
@@ -26,17 +25,56 @@ var displayFeed = function(data) {
     });
 };
 
+var filterCard = function(userList) {
+    $.each(userList.data, function(i, user) {
+        $('ul').append("<li><i class=\"fa fa-square-o\"></i> " + this.username + "</li>");
+    });
+};
+
 
 $(document).ready(function() {
-    var $auth = $('.authentication');
+    
+    var $auth = $('#authentication');
     var $filter = $('#filter');
-    $('button').on('click', function(e) {
+    var $filterCard = $('#filter-card');
+    var $following = $('#following');
+    
+    $($auth).on('click', function(e) {
         e.preventDefault();
         $($auth).css("display", "none");
-        displayFeed(igDataReal);
+        $($filter).css("display", "block");
+        filterCard(igFollows);      
     });
+    
+    $($following).on('click', function(e) {
+        e.preventDefault();
+        $($filterCard).css("display", "block");
+        filterCard(igFollows);
+    });    
+    
     $($filter).on('click', function(e) {
         e.preventDefault();
-        alert("Got it");
-    });    
+        $($filterCard).css("display", "none");
+        displayFeed(igDataReal);
+    });     
+    
+    // CLICKING ON A CHECKBOX
+
+    $('ul').on('click', 'li', function() {
+        $(this).toggleClass('checked'); 
+        if ($(this).find('i').hasClass('fa fa-check-square-o')) {
+            $(this).find('i').attr("class", "fa fa-square-o");
+        } else {
+            $(this).find('i').attr("class", "fa fa-check-square-o");
+        }
+    });
+    
 }); //Document ready closure
+
+
+// When user clicks person icon
+// Show the filter card
+// Populated it with the following data
+// Toggle favorite on/off when follower clicked
+// Add favorite info to the follows object
+//

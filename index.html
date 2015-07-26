@@ -22,16 +22,26 @@
         
 	<div class="container">
 
-        <div class="authentication">
-        <i class="fa fa-paper-plane fa-5x"></i>
-        <h1>Feed Filter</h1>
-        <h2>Quickly filter your Instagram feed!</h2>
-        <p>Ever find yourself wading through your Instagram feed wishing there was a quick way to narrow your feed so you just see the most important people you follow?</p>
-        <p>This app allows you to "favorite" some of the people you follow and then quickly filter your feed to show only your favorites.</p>
-        <hr/>
-        <p>The first step is to authorize the app to see your feed and who you follow.  When you click "Authorize" below, you will be taken to Instagram to authorize sharing the data.</p>
-        <button>Authorize</button>
+        <div id="authentication">
+            <i class="fa fa-paper-plane fa-5x"></i>
+            <h1>Feed Filter</h1>
+            <h2>Quickly filter your Instagram feed!</h2>
+            <p>Ever find yourself wading through your Instagram feed wishing there was a quick way to narrow your feed so you just see the most important people you follow?</p>
+            <p>This app allows you to "favorite" some of the people you follow and then quickly filter your feed to show only your favorites.</p>
+            <hr/>
+            <p>The first step is to authorize the app to see your feed and who you follow.  When you click "Authorize" below, you will be taken to Instagram to authorize sharing the data.</p>
+            <button>Authorize</button>
         </div>
+        
+        <div id="filter-card" class="hidden">
+            <h2>Following Favorites</h2>
+            <p>Check the box next to the users you consider your favorites. When you click the filter icon <i class="fa fa-filter"></i> your feed will toggle between showing images from everyone you're following and only your favorites.</p>
+            <ul>
+                
+            </ul>
+            <button>Show my Feed</button>
+        </div>
+        
 	    <div class="results"></div>
 	</div>
 
