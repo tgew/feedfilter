@@ -1,9 +1,5 @@
-// sample_data.js defines var called igData that is a sample object returned by Instagram
-//var igData = {
-//    caption: "My big baby",
-//    username: "tgew",
-//    image: "https://scontent.cdninstagram.com/hphotos-xfp1/t51.2885-15/s640x640/e35/sh0.08/1689111_688551287946112_336787105_n.jpg"
-//};
+// sample_data.js defines var called igDataReal that is a sample object returned by Instagram
+
 
 var displayItem = function(item) {
     var result = $('.templates .image-container').clone();
@@ -32,8 +28,15 @@ var displayFeed = function(data) {
 
 
 $(document).ready(function() {
-    $('#header-title').on('click', function(e) {
+    var $auth = $('.authentication');
+    var $filter = $('#filter');
+    $('button').on('click', function(e) {
         e.preventDefault();
+        $($auth).css("display", "none");
         displayFeed(igDataReal);
     });
+    $($filter).on('click', function(e) {
+        e.preventDefault();
+        alert("Got it");
+    });    
 }); //Document ready closure

@@ -15,11 +15,12 @@ body {
 }
 
 .authentication {
-	padding: 5px;
+	padding: 1.6em;
 	margin: 2.5em auto;
     background-color: white;
     border-radius: 5px;
     border: solid lightgray 1px;
+    text-align: justify
 }
 
 .authentication h1 {
