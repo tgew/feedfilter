@@ -1,5 +1,7 @@
 // sample_data.js defines var called igDataReal that is a sample object returned by Instagram
 
+var followsLoaded = false;
+
 var displayItem = function(item) {
     var result = $('.templates .image-container').clone();
 
@@ -29,6 +31,7 @@ var filterCard = function(userList) {
     $.each(userList.data, function(i, user) {
         $('ul').append("<li><i class=\"fa fa-square-o\"></i> " + this.username + "</li>");
     });
+    followsLoaded = true;
 };
 
 
@@ -38,6 +41,12 @@ $(document).ready(function() {
     var $filter = $('#filter');
     var $filterCard = $('#filter-card');
     var $following = $('#following');
+    var $filterCardButton = $('#closeFilterCard');
+    
+    //When the page loads, create the user's follows list on the filter card.
+    if (!followsLoaded) {
+        filterCard(igFollows);
+    }
     
     $($auth).on('click', function(e) {
         e.preventDefault();
@@ -49,7 +58,6 @@ $(document).ready(function() {
     $($following).on('click', function(e) {
         e.preventDefault();
         $($filterCard).css("display", "block");
-        filterCard(igFollows);
     });    
     
     $($filter).on('click', function(e) {
@@ -57,6 +65,11 @@ $(document).ready(function() {
         $($filterCard).css("display", "none");
         displayFeed(igDataReal);
     });     
+    
+    $($filterCardButton).on('click', function(e) {
+        e.preventDefault();
+        $($filterCard).css("display", "none");
+    });   
     
     // CLICKING ON A CHECKBOX
 
