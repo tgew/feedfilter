@@ -1,3 +1,7 @@
+body {
+    background-color: azure;
+}
+
 .container {
     margin: 3em auto;
     width: 640px;
@@ -18,10 +22,11 @@ header {
     display: flex;
     flex-flow: row wrap;
     align-content: flex-end;
-    border: solid green 1px;
+/*    border: solid green 1px;*/
     border-radius: 3px;
-    padding: 1em;
-    font-family: 'Yesteryear', cursive;
+    padding: .3em;
+    font-family: 'Righteous', cursive;
+    background-color: #F4FFE8;
 }
 
 #following {
@@ -41,12 +46,28 @@ header {
     text-align: right;
 }
 
-.inspiration {
-	margin-left: 3em;
+.image-header {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    align-content: flex-end;
+}
+
+.image-user {
+    flex-grow: 1;
+    text-align: left;
+}
+
+.image {
+    margin: 0 auto;
+}
+
+.image-caption {
+    text-align: justify;
 }
 
 .result {
-	border: 1px solid black;
+/*	border: 1px solid black;*/
 	padding: 5px;
 	margin: 0 auto 1em auto;
 }

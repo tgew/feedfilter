@@ -1,148 +1,39 @@
-$(document).ready( function() {
-	$('.unanswered-getter').submit( function(event){
-		// zero out results if previous search has run
-		$('.results').html('');
-		// get the value of the tags the user submitted
-		var tags = $(this).find("input[name='tags']").val();
-		getUnanswered(tags);
-	});
-    $('.inspiration-getter').submit( function(event){
-        // zero out results if previous search has run
-        $('.results').html('');
-        // get the value of the tags the user submitted
-        var tags = $(this).find("input[name='answerers']").val();
-        getInspiration(tags);
-    });
-});
+// sample_data.js defines var called igData that is a sample object returned by Instagram
+//var igData = {
+//    caption: "My big baby",
+//    username: "tgew",
+//    image: "https://scontent.cdninstagram.com/hphotos-xfp1/t51.2885-15/s640x640/e35/sh0.08/1689111_688551287946112_336787105_n.jpg"
+//};
 
-// this function takes the question object returned by StackOverflow
-// and creates new result to be appended to DOM
-var showQuestion = function(question) {
+var displayItem = function(item) {
+    var result = $('.templates .image-container').clone();
 
-	// clone our result template code
-	var result = $('.templates .question').clone();
-
-	// Set the question properties in result
-	var questionElem = result.find('.question-text a');
-	questionElem.attr('href', question.link);
-	questionElem.text(question.title);
-
-	// set the date asked property in result
-	var asked = result.find('.asked-date');
-	var date = new Date(1000*question.creation_date);
-	asked.text(date.toString());
-
-	// set the #views for question property in result
-	var viewed = result.find('.viewed');
-	viewed.text(question.view_count);
-
-	// set some properties related to asker
-	var asker = result.find('.asker');
-	asker.html('<p>Name: <a target="_blank" href=http://stackoverflow.com/users/' + question.owner.user_id + ' >' +
-													question.owner.display_name +
-												'</a>' +
-							'</p>' +
- 							'<p>Reputation: ' + question.owner.reputation + '</p>'
-	);
-
-	return result;
-};
-
-var showUser = function(user) {
-    var result = $('.templates .inspiration').clone();
-
-    var userElem = result.find('.display-name');
-    userElem.text(user.user.display_name);
-
-    var userImage = result.find('.profile-image');
-    userImage.html("<img src=" + user.user.profile_image + "\" alt=\"Profile Image\">");
-
-    var reputation = result.find('.reputation');
-    reputation.text(user.user.reputation);
-
-    var acceptRate = result.find('.accept-rate');
-    acceptRate.text(user.user.accept_rate);
-
-    var profile = result.find('.profile a');
-    profile.attr('href', user.user.link);
-    profile.text(user.user.link);
-
+    var imageUser = result.find('.image-user');
+    imageUser.text(item.user.username);
+    
+    var imageAge = result.find('.image-age');
+    imageAge.text("Boy I'm Old");
+    
+    var imageCaption = result.find('.image-caption');
+    imageCaption.text(item.caption.text);
+    
+    var image = result.find('.image');
+    image.html("<img src=\"" + item.images.standard_resolution.url + "\" alt=\"Instagram Picture\">");
+    
     return result;
 };
 
-
-// this function takes the results object from StackOverflow
-// and creates info about search results to be appended to DOM
-var showSearchResults = function(query, resultNum) {
-	var results = resultNum + ' results for <strong>' + query;
-	return results;
-};
-
-// takes error string and turns it into displayable DOM element
-var showError = function(error){
-	var errorElem = $('.templates .error').clone();
-	var errorText = '<p>' + error + '</p>';
-	errorElem.append(errorText);
-};
-
-// takes a string of semi-colon separated tags to be searched
-// for on StackOverflow
-var getUnanswered = function(tags) {
-
-	// the parameters we need to pass in our request to StackOverflow's API
-	var request = {tagged: tags,
-								site: 'stackoverflow',
-								order: 'desc',
-								sort: 'creation'};
-
-	var result = $.ajax({
-		url: "http://api.stackexchange.com/2.2/questions/unanswered",
-		data: request,
-		dataType: "jsonp",
-		type: "GET",
-		})
-	.done(function(result){
-		var searchResults = showSearchResults(request.tagged, result.items.length);
-
-		$('.search-results').html(searchResults);
-
-		$.each(result.items, function(i, item) {
-			var question = showQuestion(item);
-			$('.results').append(question);
-		});
-	})
-	.fail(function(jqXHR, error, errorThrown){
-		var errorElem = showError(error);
-		$('.search-results').append(errorElem);
-	});
-};
-
-var getInspiration = function(tags) {
-  var request = {   tag: tags,
-                    //period: 'month',
-                    site: 'stackoverflow'};
-
-    var result = $.ajax({
-        url: "http://api.stackexchange.com/2.2/tags/" + tags + "/top-answerers/all_time",
-        data: request,
-        dataType: "jsonp",
-        type: "GET",
-        })
-        .done(function(result){
-            var searchResults = showSearchResults(request.tag, result.items.length);
-
-            $('.search-results').html(searchResults);
-
-            $.each(result.items, function(i, item) {
-                var user = showUser(item);
-                $('.results').append(user);
-            });
-        })
-        .fail(function(jqXHR, error, errorThrown){
-            var errorElem = showError(error);
-            $('.search-results').append(errorElem);
-        });
-
+var displayFeed = function(data) {
+    $.each(data.data, function(i, item) {
+        var picture = displayItem(this);
+        $('.results').append(picture);
+    });
 };
 
 
+$(document).ready(function() {
+    $('#header-title').on('click', function(e) {
+        e.preventDefault();
+        displayFeed(igDataReal);
+    });
+}); //Document ready closure
