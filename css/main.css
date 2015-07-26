@@ -1,10 +1,11 @@
 body {
     background-color: azure;
+    box-sizing: border-box;
 }
 
 .container {
-    margin: 3em auto;
-    width: 640px;
+    margin: 2em auto 0 auto;
+    width: 655px;
     display: flex;
     flex-flow: row wrap;
 }
@@ -14,36 +15,56 @@ body {
 }
 
 .authentication {
-    display: none;
+	padding: 5px;
+	margin: 2.5em auto;
+    background-color: white;
+    border-radius: 5px;
+    border: solid lightgray 1px;
+}
+
+.authentication h1 {
+    font-family: 'Righteous', cursive;
+    text-align: center;
+}
+
+.authentication .fa {
+    width: 100%;
+    text-align: center;
+    color:darkblue
 }
 
 header {
     width: 100%;
+    position: fixed;
+    z-index: 9999;
+    top:0;
+    font-family: 'Righteous', cursive;
+    background-color: white;
+    color: #666666;
+    border-bottom: solid lightgray 1px;
+}
+
+#header-container {
     display: flex;
     flex-flow: row wrap;
-    align-content: flex-end;
-/*    border: solid green 1px;*/
-    border-radius: 3px;
-    padding: .3em;
-    font-family: 'Righteous', cursive;
-    background-color: #F4FFE8;
+    width: 655px;
+    margin: 1em auto;
 }
 
 #following {
     flex-grow: 1;
-    text-align: left;
+    text-align: center;
 }
 
 #header-title {
-    flex-grow: 2;
+    flex-grow: 8;
     text-align: center;
     font-size: 1.5em;
-    color:dodgerblue
 }
 
 #filter {
     flex-grow: 1;
-    text-align: right;
+    text-align: center;
 }
 
 .image-header {
@@ -51,6 +72,7 @@ header {
     display: flex;
     flex-flow: row wrap;
     align-content: flex-end;
+    margin: 1em 0;
 }
 
 .image-user {
@@ -64,12 +86,20 @@ header {
 
 .image-caption {
     text-align: justify;
+    margin: 1em 0;
 }
 
 .result {
 /*	border: 1px solid black;*/
 	padding: 5px;
 	margin: 0 auto 1em auto;
+}
+
+.image-container {
+    margin: 3em 0;
+    background-color: white;
+    border-radius: 5px;
+    border: solid lightgray 1px;
 }
 
 .error {
