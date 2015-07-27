@@ -173,7 +173,7 @@ var igDataReal = {
       "user_has_liked": false,
       "id": "1037630041344792337_787132",
       "user": {
-        "username": "kevin",
+        "username": "natgeo",
         "profile_picture": "https://instagramimages-a.akamaihd.net/profiles/profile_787132_75sq_1363053498.jpg",
         "id": "787132",
         "full_name": "National Geographic"
@@ -422,7 +422,7 @@ var igDataReal = {
       "user_has_liked": false,
       "id": "1037508228337981290_787132",
       "user": {
-        "username": "natgeo",
+        "username": "kevin",
         "profile_picture": "https://instagramimages-a.akamaihd.net/profiles/profile_787132_75sq_1363053498.jpg",
         "id": "787132",
         "full_name": "National Geographic"
