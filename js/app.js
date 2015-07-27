@@ -1,7 +1,5 @@
 // sample_data.js defines var called igDataReal that is a sample object returned by Instagram
 
-var followsLoaded = false;
-
 var displayItem = function(item) {
     var result = $('.templates .image-container').clone();
 
@@ -28,6 +26,7 @@ var displayFeed = function(data) {
 };
 
 var filterCard = function(userList) {
+    $('li').remove();
     $.each(userList.data, function(i, user) {
         $('ul').append("<li><i class=\"fa fa-square-o\"></i> " + this.username + "</li>");
     });
@@ -44,9 +43,7 @@ $(document).ready(function() {
     var $filterCardButton = $('#closeFilterCard');
     
     //When the page loads, create the user's follows list on the filter card.
-    if (!followsLoaded) {
-        filterCard(igFollows);
-    }
+    filterCard(igFollows);
     
     $($auth).on('click', function(e) {
         e.preventDefault();
