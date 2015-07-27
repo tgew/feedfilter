@@ -79,7 +79,14 @@ $(document).ready(function() {
     
     $($filter).on('click', function(e) {
         e.preventDefault();
+        //User clicked the funnel (filter) button.  If it's on, turn it off.  If it's off, turn it on.
         filtered = !filtered;
+        //If the filter button is now on, turn it green.  Otherwise, we're turning off, so turn it gray.
+        if (filtered) {
+            $($filter).css("color", "green");
+        } else {
+            $($filter).css("color", "#666666");
+        }
         $($filterCard).css("display", "none");
         displayFeed(igDataReal);
     });     
