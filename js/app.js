@@ -26,13 +26,11 @@ var displayFeed = function(data, userList) {
     //Iterate through all the pictures
     $.each(data.data, function(i, item) {
         var picture = displayItem(this);
-//        var picture = "I'm a fat frog.";
+
         //If filtering is selected, show only pictures of favorites.
         if (filtered) {
-            var favPic = isUserFavorite(this.user.username, userList);
-            if (favPic) {
+            if (isUserFavorite(this.user.username, userList)) {
                 $('.results').append(picture);
-                alert("I posted a filtered picture.");
             }
         } else {
             //Otherwise, show all the pictures in the feed.
@@ -42,15 +40,14 @@ var displayFeed = function(data, userList) {
 };
 
 var isUserFavorite = function(followsName, userList) {
+    var isFavorite = false;
     $.each(userList.data, function(i, user){
-        var test = this.username;
         //Look at each username and if it matches the one sent to the function and is a favorite, return true.    
-        if ((this.username == followsName) && (this.favorite)) {
-           return true;
-       }
+        if ((this.username == followsName) && (this.favorite == true)){
+                isFavorite = true;
+            }
     });
-    //Else if we get through the whole list and either no match on the name or the name is not a favorite, return false.
-    return false;
+    return isFavorite;
 };
 
 var filterCard = function(userList) {
