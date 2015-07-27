@@ -54,7 +54,7 @@ $(document).ready(function() {
     var $filter = $('#filter');
     var $filterCard = $('#filter-card');
     var $following = $('#following');
-    var $filterCardButton = $('#closeFilterCard');
+    var $showFeedButton = $('#showFeed');
     var $list = $('ul');
     
     //When the page loads, create the user's follows list on the filter card.
@@ -63,7 +63,7 @@ $(document).ready(function() {
     $($authButton).on('click', function(e) {
         e.preventDefault();
         $($auth).css("display", "none");
-        $($filter).css("display", "block");
+        $($filterCard).css("display", "block");
         filterCard(igFollows);      
     });
     
@@ -84,9 +84,10 @@ $(document).ready(function() {
         displayFeed(igDataReal);
     });     
     
-    $($filterCardButton).on('click', function(e) {
+    $($showFeedButton).on('click', function(e) {
         e.preventDefault();
         $($filterCard).css("display", "none");
+        displayFeed(igDataReal);
     });   
     
     // CLICKING ON A CHECKBOX
