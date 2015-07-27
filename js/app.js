@@ -21,7 +21,7 @@ var displayItem = function(item) {
 
 var displayFeed = function(data) {
     //Clear the current feed
-    $('.results').remove();
+    $('.results').empty();
     
     //Iterate through all the pictures
     $.each(data.data, function(i, item) {
