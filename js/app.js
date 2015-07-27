@@ -49,7 +49,8 @@ var filterCard = function(userList) {
 
 $(document).ready(function() {
     
-    var $auth = $('#authentication');
+    var $authButton = $('#authentication > button');
+    var $auth = $('.modal');
     var $filter = $('#filter');
     var $filterCard = $('#filter-card');
     var $following = $('#following');
@@ -59,7 +60,7 @@ $(document).ready(function() {
     //When the page loads, create the user's follows list on the filter card.
     filterCard(igFollows);
     
-    $($auth).on('click', function(e) {
+    $($authButton).on('click', function(e) {
         e.preventDefault();
         $($auth).css("display", "none");
         $($filter).css("display", "block");
