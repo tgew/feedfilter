@@ -41,6 +41,7 @@ $(document).ready(function() {
     var $filterCard = $('#filter-card');
     var $following = $('#following');
     var $filterCardButton = $('#closeFilterCard');
+    var $list = $('ul');
     
     //When the page loads, create the user's follows list on the filter card.
     filterCard(igFollows);
@@ -70,12 +71,21 @@ $(document).ready(function() {
     
     // CLICKING ON A CHECKBOX
 
-    $('ul').on('click', 'li', function() {
+    $($list).on('click', 'li', function() {
+        var i = $(this).index();
+        
+        //Toggle the checked class of the li
         $(this).toggleClass('checked'); 
+        
+        //If the check box is checked...
         if ($(this).find('i').hasClass('fa fa-check-square-o')) {
+            //uncheck it
             $(this).find('i').attr("class", "fa fa-square-o");
+            igFollows.data[i].favorite = false;
+        //Otherwise, check it.
         } else {
             $(this).find('i').attr("class", "fa fa-check-square-o");
+            igFollows.data[i].favorite = true;
         }
     });
     
