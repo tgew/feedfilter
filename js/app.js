@@ -1,4 +1,5 @@
 // sample_data.js defines var called igDataReal that is a sample object returned by Instagram
+var filtered = false;
 
 var displayItem = function(item) {
     var result = $('.templates .image-container').clone();
@@ -19,9 +20,21 @@ var displayItem = function(item) {
 };
 
 var displayFeed = function(data) {
+    //Clear the current feed
+    $('.results').remove();
+    
+    //Iterate through all the pictures
     $.each(data.data, function(i, item) {
         var picture = displayItem(this);
-        $('.results').append(picture);
+        //If filtering is selected, show only pictures of favorites.
+        if (filtered) {
+            if (this.favorite) {
+                $('.results').append(picture);
+            }
+        } else {
+            //Otherwise, show all the pictures in the feed.
+            $('.results').append(picture);
+        }
     });
 };
 
@@ -55,11 +68,17 @@ $(document).ready(function() {
     
     $($following).on('click', function(e) {
         e.preventDefault();
-        $($filterCard).css("display", "block");
+        var displayed = $($filterCard).css("display");
+        if (displayed == "none") {
+            $($filterCard).css("display", "block");
+        } else {
+            $($filterCard).css("display", "none");
+        }
     });    
     
     $($filter).on('click', function(e) {
         e.preventDefault();
+        filtered = !filtered;
         $($filterCard).css("display", "none");
         displayFeed(igDataReal);
     });     
