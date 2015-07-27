@@ -19,23 +19,38 @@ var displayItem = function(item) {
     return result;
 };
 
-var displayFeed = function(data) {
+var displayFeed = function(data, userList) {
     //Clear the current feed
     $('.results').empty();
     
     //Iterate through all the pictures
     $.each(data.data, function(i, item) {
         var picture = displayItem(this);
+//        var picture = "I'm a fat frog.";
         //If filtering is selected, show only pictures of favorites.
         if (filtered) {
-            if (this.favorite) {
+            var favPic = isUserFavorite(this.user.username, userList);
+            if (favPic) {
                 $('.results').append(picture);
+                alert("I posted a filtered picture.");
             }
         } else {
             //Otherwise, show all the pictures in the feed.
             $('.results').append(picture);
         }
     });
+};
+
+var isUserFavorite = function(followsName, userList) {
+    $.each(userList.data, function(i, user){
+        var test = this.username;
+        //Look at each username and if it matches the one sent to the function and is a favorite, return true.    
+        if ((this.username == followsName) && (this.favorite)) {
+           return true;
+       }
+    });
+    //Else if we get through the whole list and either no match on the name or the name is not a favorite, return false.
+    return false;
 };
 
 var filterCard = function(userList) {
@@ -58,13 +73,14 @@ $(document).ready(function() {
     var $list = $('ul');
     
     //When the page loads, create the user's follows list on the filter card.
-    filterCard(igFollows);
+    //filterCard(igFollows);
     
     $($authButton).on('click', function(e) {
         e.preventDefault();
         $($auth).css("display", "none");
         $($filterCard).css("display", "block");
-        filterCard(igFollows);      
+        filterCard(igFollows); 
+        displayFeed(igDataReal, igFollows);
     });
     
     $($following).on('click', function(e) {
@@ -87,14 +103,13 @@ $(document).ready(function() {
         } else {
             $($filter).css("color", "#666666");
         }
-        $($filterCard).css("display", "none");
-        displayFeed(igDataReal);
+        displayFeed(igDataReal, igFollows);
     });     
     
     $($showFeedButton).on('click', function(e) {
         e.preventDefault();
         $($filterCard).css("display", "none");
-        displayFeed(igDataReal);
+        displayFeed(igDataReal, igFollows);
     });   
     
     // CLICKING ON A CHECKBOX
