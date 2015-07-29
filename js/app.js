@@ -69,13 +69,25 @@ $(document).ready(function() {
     var $showFeedButton = $('#showFeed');
     var $list = $('ul');
     
-    //When the page loads, create the user's follows list on the filter card.
-    //filterCard(igFollows);
+    //Check to see if we're returning from the authorization call, or if this is the first time I'm loading.
+    //If this is a return from auth
+        //If they denyed the request
+            //Put a modal up that gives the user the option of trying again or quitting the app.  
+            //(Take them to www.instagram.com)
+        //Else if they allowed the request
+            //Store the auth token
+            //Hide the auth card
+            //Display the follows card
+            //Fill the follows card
+            //Display the unfiltered feed
+    //Else if it's the first time the page is loaded
+        //Wait for the user to click the auth button
+
     
     $($authButton).on('click', function(e) {
         e.preventDefault();
-        $($auth).css("display", "none");
-        $($filterCard).css("display", "block");
+//        $($auth).css("display", "none");
+//        $($filterCard).css("display", "block");
         filterCard(igFollows); 
         displayFeed(igDataReal, igFollows);
     });
